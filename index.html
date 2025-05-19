@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+    }
+
+    /* Top Navigation */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0rem;
+      background-color: #141414;
+      padding: 1rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 900;
+    }
+
+    .top-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .top-nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: #ff4da6;
+      transition: width 0.3s;
+    }
+
+    .top-nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section (Side-by-side layout) */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6rem;
+      padding: 4rem 2rem;
+      background: linear-gradient(to right, #1a1a1a, #0f0f0f);
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    .hero-left .profile-pic {
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      border: 4px solid #ff4da6;
+      object-fit: cover;
+      box-shadow: 0 0 30px #ff4da680;
+    }
+
+    .hero-right h1 {
+      color: #ff4da6;
+      font-size: 3rem;
+      text-shadow: 0 0 10px #ff4da6aa;
+    }
+
+    /* Navigation links in top-right */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 2rem;
+      background-color: #141414;
+      padding: 3rem 4rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    /* General Section Styling */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: #ff4da6;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      text-shadow: 0 0 8px #ff4da6cc;
+    }
+
+    .about p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      text-align: justify;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .skills ul {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0;
+    }
+
+    .skills li {
+      background-color: #1f1f1f;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      border: 1px solid #ff4da6;
+      color: #ff4da6;
+      font-weight: 500;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+
+    .skills li:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #ff4da6cc;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background-color: #1a1a1a;
+      border: 1px solid #ff4da6;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 15px #ff4da620;
+    }
+
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #ff4da6;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 1rem;
+    }
+
+    .project-content h3 {
+      margin-top: 0;
+      color: #ff4da6;
+    }
+
+    .contact-icons {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .contact-icons a {
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    .contact-icons a:hover {
+      transform: scale(1.1);
+    }
+
+    .contact-icons a img {
+      width: 35px;
+      height: 35px;
+      filter: brightness(0) invert(1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #1a1a1a;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-right h1 {
+        font-size: 2.2rem;
+        margin-top: 1rem;
+      }
+
+      .top-nav {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .profile-pic {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation in top-right -->
+  <nav class="top-nav">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero Section with Flex Layout -->
+  <section class="hero">
+    <div class="hero-left">
+      <img src="Profile Picture.jpeg" alt="Profile Picture" class="profile-pic">
+    </div>
+    <div class="hero-right">
+        <h2>Hello, my name is</h2>
+      <h1>Shreya Abhay Bhagat</h1>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>
+      I'm a First Year student at MIT Academy of Engineering currently pursuing my B.Tech in Computer Engineering. I'm passionate about learning new skills and exposing myself to knowledge in the field of technology. However, technology isn't the only thing that defines me and my interests. I love working on new projects and learn as I go. I'm fond of learning new languages and I do mean every language when I say this.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills" id="skills">
+    <h2 class="section-title">Skills</h2>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>C</li>
+      <li>Python</li>
+      <li>Basic Linux</li> 
+      <li>Git</li>
+      <li>Tableau</li>
+      <li>Basic Japanese</li>
+      <li>Basic French</li>
+      <li>Basic Korean</li>
+      <li>Art</li>
+      <li>Basketball</li>
+      <li>Badminton</li>
+      <li>Skating</li>
+   </ul>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="DT Project.jpeg" alt="Project 1 Thumbnail">
+        <div class="project-content">
+          <h3>Soil Moisture Sensor-based Irrigation Prototype</h3>
+          <p>A Design Thinking user-friendly Project developed to implement optimized irrigation by saving resources and reduce human effort.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="Password generator.jpg" alt="Project 2 Thumbnail">
+        <div class="project-content">
+          <h3>Password Generator</h3>
+          <p>A strong and secure password generator using Linux.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="Recipe generator.jpg" alt="Project 3 Thumbnail">
+        <div class="project-content">
+          <h3>AI Recipe Generator</h3>
+          <p>An AI-based mini project that generates recipes based o user preferences using API and integrated with chatbot.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="Tableau mini project.jpg" alt="Project 4 Thumbnail">
+        <div class="project-content">
+          <h3>Data Analysis using Tableau</h3>
+          <p>A mini project for drawing insights from a car dealer dataset in Tableau.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact-icons">
+      <a href="mailto:shreyaab06@gmail.com" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email"></a>
+      <a href="https://github.com/ShreyaABhagat" target="_blank"><img src="https://img.icons8.com/ios-glyphs/50/ffffff/github.png" alt="GitHub"></a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn"></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Shreya Abhay Bhagat. All rights reserved.
+  </footer>
+
+  <!-- Scroll Reveal Script -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          sec.classList.add("visible");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+  </script>
+
+</body>
+</html>
